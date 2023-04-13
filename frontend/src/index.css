@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+:root {
+  --app-pink-light: #f21ba7;
+  --app-pink-dark: #bf1592;
+  --app-purple-light: #772b8c;
+  --app-purple-dark: #4d308c;
+
+  --white: #ffffff;
+  --black: #000000;
+
+  --gray-light: #f5f7ff;
+  --gray-medium: #f0f2fc;
+  --gray-dark: #ebeefc;
+
+  --icon-default: #c3c7e6;
+  --icon-hover: #0083ff;
+
+  --tooltip: #111827;
+
+  --online: #059669;
+  --offline: #dc2626;
+  --invisible: #0284c7;
+  --away: #ca8a04;
+
+  --info-warn: #caa904;
+  --info-warn-out: #b59702;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Merriweather', serif;
+  font-weight: 400;
+  font-size: 3.2rem;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}

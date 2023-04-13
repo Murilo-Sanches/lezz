@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      html {
+        width: 100vw;
+        height: 100vh;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .t {
+        position: relative;
+        width: 200px;
+        height: 80px;
+        background: #522d5b;
+        margin-top: 5rem;
+      }
+      .t:before {
+        content: '';
+        position: absolute;
+        top: -40px;
+        left: 0;
+        height: 40px;
+        width: 40px;
+        border-bottom-left-radius: 50%;
+        background: transparent;
+      }
+      .t:before {
+        box-shadow: 0 20px 0 0 #522d5b;
+      }
+
+      .perfect {
+        position: relative;
+        width: 200px;
+        height: 80px;
+        background: #522d5b;
+        margin: 5rem;
+        border-radius: 20px 0 0 20px;
+      }
+
+      .perfect::before {
+        content: '';
+        position: absolute;
+        top: -40px;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        background-color: transparent;
+        border-bottom-right-radius: 50%;
+        box-shadow: 0 20px 0 0 #522d5b;
+      }
+
+      .ue {
+        position: relative;
+        width: 200px;
+        height: 80px;
+        background: #522d5b;
+        margin: 5rem;
+        border-radius: 20px 0 0 20px;
+      }
+
+      .ue::before {
+        content: '';
+        position: absolute;
+        bottom: -40px;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        border-top-right-radius: 50%;
+        box-shadow: 0 -20px 0 0 #522d5b;
+      }
+      .ue::after {
+        content: '';
+        position: absolute;
+        top: -40px;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        border-bottom-right-radius: 50%;
+        box-shadow: 0 20px 0 0 #522d5b;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="t"></div>
+
+    <div class="perfect"></div>
+
+    <div class="ue"></div>
+
+    <script>
+      const teAmoCara = 'https://blog.logrocket.com/how-to-create-fancy-corners-in-css/';
+    </script>
+  </body>
+</html>

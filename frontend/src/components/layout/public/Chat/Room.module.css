@@ -1,0 +1,54 @@
+.notification__container {
+  flex: 0.25;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.subject__container {
+  flex: 1;
+  height: 100%;
+  border-radius: 25px 0 0 25px;
+}
+
+.subject__container:hover {
+  background-color: var(--gray-light);
+}
+
+.notification-icon {
+  width: 10px;
+  height: 10px;
+  background-color: var(--online);
+  border-radius: 50%;
+}
+
+.subject__pic {
+  flex: 0.25;
+  flex: 0.1;
+  padding: 1rem;
+}
+
+.subject__pic img {
+  max-height: 100%;
+  border-radius: 15px;
+}
+
+.subject__profile {
+  flex: 1;
+  padding: 1rem;
+}
+
+.subject-username {
+  display: block;
+  font-weight: 400;
+}
+
+.subject-message {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  font-weight: 700;
+  max-width: 225px;
+  max-width: auto;
+}

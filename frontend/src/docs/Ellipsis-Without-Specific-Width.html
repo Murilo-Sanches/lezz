@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      /*  ---- Start of styles relevant for the demo ---- */
+
+      .flex {
+        display: flex;
+      }
+
+      .truncated {
+        /* Must not be `display: flex` */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .overflow-hidden {
+        /* You can also use overflow: auto, or overflow: scroll */
+        overflow: hidden;
+      }
+
+      /*  ---- End of styles relevant for the demo ---- */
+
+      /*  ---- Start of cosmetic styles ---- */
+      div,
+      div a {
+        background: rgba(0, 0, 0, 0.1);
+        padding: 0.5rem;
+        margin: 0.5rem;
+        font-family: monaco, monospace;
+        max-width: 700px;
+        color: rgba(0, 0, 0, 0.8);
+        border-radius: 4px;
+        text-decoration: none;
+      }
+
+      p {
+        font-family: system-ui, palatino, serif;
+        font-style: italic;
+        font-size: 1.2rem;
+        max-width: 40rem;
+        line-height: 1.5;
+        padding: 0 1rem;
+      }
+
+      code {
+        background-color: rgba(0, 0, 0, 0.05);
+        color: rgba(0, 0, 0, 0.6);
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-style: normal;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: system-ui, palatino, sans-serif;
+        margin-top: 8rem;
+        padding: 0 1rem;
+        max-width: 60rem;
+      }
+
+      h1 {
+        font-family: palatino, serif;
+        margin-top: 10rem;
+        font-size: 4rem;
+      }
+
+      .flex > div::after,
+      .flex::before,
+      .flex > * div::before {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        content: 'flex item';
+        color: rgba(0, 0, 0, 0.5);
+        display: block;
+      }
+
+      .flex::before {
+        content: 'flex container';
+        color: black;
+        font-weight: 700;
+      }
+
+      .flex > * {
+        background: honeydew;
+        margin-top: 3rem;
+      }
+
+      .flex > * div::before {
+        content: 'div';
+      }
+
+      .truncated {
+        border: 2px solid darkorchid;
+      }
+
+      .overflow-hidden {
+        border: 1px solid tomato;
+      }
+
+      .flex {
+        box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.7);
+      }
+
+      @font-face {
+        font-family: system-ui;
+        font-style: normal;
+        font-weight: 500;
+        src: local('.SFNSText-Medium'), local('.HelveticaNeueDeskInterface-MediumP4'),
+          local('.LucidaGrandeUI'), local('Segoe UI Semibold'), local('Ubuntu Medium'),
+          local('Roboto-Medium'), local('DroidSans-Bold'), local('Tahoma Bold');
+      }
+
+      @font-face {
+        font-family: system-ui;
+        font-style: italic;
+        font-weight: 300;
+        src: local('.SFNSText-LightItalic'), local('.HelveticaNeueDeskInterface-Italic'),
+          local('.LucidaGrandeUI'), local('Segoe UI Light Italic'), local('Ubuntu Light Italic'),
+          local('Roboto-LightItalic'), local('DroidSans'), local('Tahoma');
+      }
+
+      section {
+        min-width: 500px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+        padding: 4em 4em 8em;
+      }
+
+      /*  ---- End of cosmetic styles ---- */
+    </style>
+  </head>
+  <body>
+    <section>
+      <h1>Ellipsis truncation and flexbox without a specific width</h1>
+      <p>
+        Summary: Until recently I thought you needed an explicit width to use ellipsis truncation.
+        But apparently not! And it works great with flex. But if you use flex with an ellipsis you
+        will likely need to watch out for some cases where it needs an extra rule as explained
+        below. (Resize a desktop browser to see the ellipsis work.) — 2017-4-5 CGB
+      </p>
+
+      <p>✅ = Works in recent Firefox, Safari, Chrome! <br />❌ = Nope.</p>
+    </section>
+
+    <section>
+      <h3>Demo 1a — Not truncated ✅</h3>
+      <p>This has no truncation. Text wraps. Ok! Fine.</p>
+      <div>
+        A blue and green city, with the sun rising behind it, just not swiftly enough / Don’t worry
+        about being perfect. Just make sure you have some juice left in the pump
+      </div>
+
+      <h3>Demo 1b — Truncated content with fixed width ✅</h3>
+      <p>
+        This is the "classic" single-line ellipsis truncation. It uses a three-line incantation of
+        <code>white-space: nowrap</code>, <code>overflow: hidden</code> and
+        <code>text-overflow: ellipsis</code>. Also in the old-school (circa 2010?) style there is a
+        <code>width: 150px</code> applied to this
+        <code style="color: darkorchid">.truncated</code> element. (The point of the later demos is
+        that it works without a specific width, and the width can be controlled with flexbox.)
+      </p>
+
+      <div style="width: 150px" class="truncated">
+        A blue and green city, with the sun rising behind it, just not swiftly enough / Don’t worry
+        about being perfect. Just make sure you have some juice left in the pump
+      </div>
+
+      <h3>Demo 1c — Truncated content with percentage width ✅</h3>
+      <p>This has <code>width:20%</code>. Ok. Nice.</p>
+      <div style="width: 20%" class="truncated">
+        I have many other remedies on hand, not just history’s bags of sumptuous soot / Hello, I am
+        beauty’s representative; I work in the self-improvement sector
+      </div>
+      <h3>Demo 1d — Truncated content with arbitrary width ✅</h3>
+      <p>
+        This shows that <code style="color: darkorchid">.truncated</code> works without any width at
+        all. Also useful!
+      </p>
+      <div class="truncated">
+        Don’t worry about being perfect. Just make sure you have some juice left in the pump / How
+        do you see yourself on the material plane of observed phenomena
+      </div>
+      <h3>Demo 1e — Nested truncated content with arbitrary width ✅</h3>
+      <p>
+        In general the <code style="color: darkorchid">.truncated</code> element can be whatever you
+        like as long as it's <code>display: block</code>). For example, here's a link nested in some
+        divs. Not too surprising.
+      </p>
+      <div>
+        <div>
+          <div>
+            <div>
+              <a href="" class="truncated" style="display: block"
+                >A blue and green city, with the sun rising behind it, just not swiftly enough /
+                Don’t worry about being perfect. Just make sure you have some juice left in the pump
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h3>Demo 2a — truncation with flex, works great! ✅</h3>
+      <p>
+        This shows that you can use the ellipsis truncation inside a flex item, so you can use the
+        flex to control the width of the item. OMG super useful!
+      </p>
+      <div class="flex">
+        <div></div>
+        <div class="truncated">
+          How do you see yourself on the material plane of observed phenomena / You might need a
+          reevaluation, an estimate, or an era to expire
+        </div>
+      </div>
+
+      <h3>Demo 2b — truncation on a flex-item containing nested content ❌</h3>
+      <p>
+        If we add more divs inside the <code style="color: darkorchid">.truncated</code> it breaks a
+        reasonable way. The text keeps going until it reaches that truncation boundary. Ok.
+      </p>
+      <div class="flex">
+        <div></div>
+        <div class="truncated">
+          <div>
+            <div>
+              <div>
+                Have you ever been sideswiped by a bad investment in love / Before you decide that
+                you are nothing more than a clump or splatter
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h3>Demo 3a — truncated content nested inside a flex item ❌</h3>
+      <p>
+        So we can move <code style="color: darkorchid">.truncated</code> down to the element that
+        actually needs the ellipsis. But now the flex item containing the nested truncated element
+        is the wrong width! The truncation still works with the ellipsis, but the flex-item is not
+        resizing. No ellipsis. Hmph.
+      </p>
+      <div class="flex">
+        <div></div>
+        <div>
+          <div>
+            <div class="truncated">
+              You might need a reevaluation, an estimate, or an era to expire / Have you learned how
+              to remove yourself from every mirror you pass
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3>Demo 3b — truncated content nested inside a flex item, fixed ✅</h3>
+      <p>
+        You can fix it by adding <code style="color: tomato">overflow: hidden</code> to the
+        flex-item containing the truncated element. Phew.
+      </p>
+      <div class="flex">
+        <div></div>
+        <div class="overflow-hidden">
+          <div>
+            <div class="truncated">
+              Before you decide that you are nothing more than a clump or splatter / Let me tell you
+              about the palm trees on the horizon of your future
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h3>Demo 4a — nested flex containers with truncated child. Wat. ❌</h3>
+      <p>
+        Now what happens if you add a nested flex container around the truncated item. Yikes! Again
+        the flex item is confused. It's the same problem. The outer overflow won’t save ya.
+      </p>
+      <div class="flex">
+        <div></div>
+        <div class="overflow-hidden">
+          <div class="flex">
+            <div>
+              <div class="truncated">
+                Have you learned how to remove yourself from every mirror you pass / A blue and
+                green city, with the sun rising behind it, just not swiftly enough
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3>Demo 4b — nested flex containers with a truncated child, working ✅</h3>
+      <p>
+        So, if you add more nesting inside your flex'd elements, you need to add another
+        <code style="color: tomato">overflow-hidden</code> to the flex-item containing the truncated
+        element.
+      </p>
+      <div class="flex">
+        <div></div>
+        <div class="flex overflow-hidden">
+          <div class="overflow-hidden">
+            <div>
+              <div>
+                <div class="truncated">
+                  Let me tell you about the palm trees on the horizon of your future / I have many
+                  other remedies on hand, not just history’s bags of sumptuous soot
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h3>
+        <b
+          >So: To truncate you don't need a width, but if you want to truncate something inside a
+          flex-item, the flex-item must have overflow: hidden.</b
+        >
+      </h3>
+      <p>Send bugs if you spot em! — <a href="http://twitter.com/unthinkingly">@unthinkingly</a></p>
+      <p>Tested on MacOS in Safari 10.1.1, Firefox 54.0.1, Chrome 59.0.3071.</p>
+      <p>
+        Poetry by
+        <a
+          href="https://www.poetryfoundation.org/poetrymagazine/poems/142872/something-to-look-forward-to"
+          >John Yau</a
+        >.
+      </p>
+    </section>
+  </body>
+</html>

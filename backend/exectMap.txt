@@ -1,0 +1,10 @@
+{
+  "watch": ["src"],
+  "ext": "ts",
+  "execMap": {
+    "ts": "sucrase-node src/index.ts"
+  }
+}
+
+
+"dev": "set NODE_ENV=development&& nodemon Src/Server.ts",

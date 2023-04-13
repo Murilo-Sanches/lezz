@@ -1,0 +1,43 @@
+.direct__container {
+  width: 35rem;
+  height: 100%;
+}
+
+.direct__welcome {
+  width: inherit;
+  height: 10rem;
+  /* background-color: yellow; */
+  display: grid;
+  place-items: center;
+}
+
+.direct__inbox {
+  width: inherit;
+  height: calc(100% - 10rem);
+  background-color: green;
+  background-color: var(--gray-dark);
+  border-radius: 5rem 5rem 0 2.5rem;
+  padding-block: 5rem;
+  overflow-y: auto;
+}
+
+.direct__inbox::-webkit-scrollbar {
+  width: 2.5px;
+  width: 5px;
+}
+
+.direct__inbox::-webkit-scrollbar-track {
+  background: #c3c7e6;
+  border-radius: 5px;
+}
+
+.direct__inbox::-webkit-scrollbar-thumb {
+  background-color: #0083ff;
+  border-radius: 10px;
+  border: 1.5px solid #ffffff;
+}
+
+.direct__inbox::-webkit-scrollbar-track {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
